@@ -10,4 +10,5 @@ class Holiday extends Model
     use HasFactory;
 
     protected $fillable = ['name', 'date'];
+    public $timestamps = false;
 }
