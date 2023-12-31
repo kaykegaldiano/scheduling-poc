@@ -32,5 +32,7 @@
                 {{ $slot }}
             </main>
         </div>
+
+        @stack('pickr')
     </body>
 </html>
