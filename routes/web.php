@@ -1,28 +1,26 @@
 <?php
 
+use App\Http\Controllers\HolidayController;
 use App\Http\Controllers\ProfileController;
+use App\Models\Holiday;
 use Illuminate\Support\Facades\Route;
-
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "web" middleware group. Make something great!
-|
-*/
 
 Route::get('/', function () {
     return view('welcome');
 });
 
 Route::get('/dashboard', function () {
-    return view('dashboard');
+    return view('dashboard', [
+        'holidays' => Holiday::all()
+    ]);
 })->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::get('/holidays', [App\Http\Controllers\HolidayController::class, 'index'])->name('holidays.index');
+Route::get('/holidays', [HolidayController::class, 'index'])->name('holidays.index');
+Route::get('/holidays/create', [HolidayController::class, 'create'])->name('holidays.create');
+Route::post('/holidays', [HolidayController::class, 'store'])->name('holidays.store');
+Route::get('/holidays/{holiday}/edit', [HolidayController::class, 'edit'])->name('holidays.edit');
+Route::put('/holidays/{holiday}', [HolidayController::class, 'update'])->name('holidays.update');
+Route::delete('/holidays/{holiday}', [HolidayController::class, 'destroy'])->name('holidays.destroy');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
