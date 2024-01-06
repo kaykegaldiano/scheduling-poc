@@ -1,6 +1,6 @@
 ## Scheduling
 
-This is a proof of concept of a simple scheduling.
+This is a work in progress proof of concept of a simple scheduling.
 
 ## How to run this project
 
