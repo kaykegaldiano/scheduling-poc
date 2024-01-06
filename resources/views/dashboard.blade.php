@@ -1,5 +1,3 @@
-@dd($scheduleTimes[0]->schedule_date)
-
 <x-app-layout>
     <x-slot name="header">
         <h2 class="text-xl font-semibold leading-tight text-gray-800">
@@ -9,6 +7,12 @@
 
     @session('success')
         <div class="px-4 py-3 text-green-800 bg-green-400 border border-green-400 rounded" role="alert">
+            {{ $value }}
+        </div>
+    @endsession
+
+    @session('error')
+        <div class="px-4 py-3 text-red-800 bg-red-400 border border-red-400 rounded" role="alert">
             {{ $value }}
         </div>
     @endsession
@@ -35,9 +39,9 @@
                             <x-input-label for="schedule_time" value="Selecione o horário" />
                             <select class="border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500" name="schedule_hour" id="schedule_hour">
                                 <option value="" selected>-</option>
-                                    @foreach ($schedules as $schedule)
-                                        <option value="{{ $schedule->time }}">{{ $schedule->time }}</option>
-                                    @endforeach
+                                @foreach ($schedules as $schedule)
+                                    <option value="{{ $schedule->time }}">{{ $schedule->time }}</option>
+                                @endforeach
                             </select>
                             <x-input-error :messages="$errors->get('schedule_hour')" />
                         </div>

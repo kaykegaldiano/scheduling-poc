@@ -28,6 +28,14 @@ Route::post('/dashboard', function (Request $request): RedirectResponse {
         'schedule_hour' => 'required'
     ]);
 
+    $scheduleTime = ScheduleTime::where('schedule_date', $request->schedule_date)
+        ->where('schedule_hour', $request->schedule_hour)
+        ->exists();
+
+    if ($scheduleTime) {
+        return back()->with('error', 'Já existe um agendamento para esta data e hora! Tente um dia ou uma hora diferente!');
+    }
+
     ScheduleTime::create([
         'user_id' => Auth::user()->id,
         'schedule_date' => $request->schedule_date,
