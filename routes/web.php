@@ -21,9 +21,9 @@ Route::get('/dashboard', function () {
         'schedules' => Schedule::all(),
         'scheduleTimes' => ScheduleTime::all()
     ]);
-})->middleware(['auth', 'verified'])->name('dashboard');
-
-Route::resource('schedules', ScheduleController::class)->except('show');
+})
+    ->middleware(['auth', 'verified'])
+    ->name('dashboard');
 
 Route::post('/dashboard', function (Request $request): RedirectResponse {
     $request->validate([
@@ -46,14 +46,12 @@ Route::post('/dashboard', function (Request $request): RedirectResponse {
     ]);
 
     return back()->with('success', 'Agendamento feito com sucesso!');
-})->name('dashboard');
+})
+    ->middleware(['auth', 'verified'])
+    ->name('dashboard');
 
-Route::get('/holidays', [HolidayController::class, 'index'])->name('holidays.index');
-Route::get('/holidays/create', [HolidayController::class, 'create'])->name('holidays.create');
-Route::post('/holidays', [HolidayController::class, 'store'])->name('holidays.store');
-Route::get('/holidays/{holiday}/edit', [HolidayController::class, 'edit'])->name('holidays.edit');
-Route::put('/holidays/{holiday}', [HolidayController::class, 'update'])->name('holidays.update');
-Route::delete('/holidays/{holiday}', [HolidayController::class, 'destroy'])->name('holidays.destroy');
+Route::resource('schedules', ScheduleController::class)->only(['index', 'destroy']);
+Route::resource('/holidays', HolidayController::class)->except('show');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

@@ -37,7 +37,6 @@
                                     <td class="px-6 py-4">{{ Carbon::parse($schedule->schedule_date)->format('d/m/Y') }}</td>
                                     <td class="px-6 py-4">{{ $schedule->schedule_hour }}</td>
                                     <td class="flex flex-row px-6 py-4 gap-x-2">
-                                        <a href="{{ route('schedules.edit', $schedule->id) }}" class="inline-flex items-center px-4 py-2 text-xs font-semibold tracking-widest text-white uppercase transition duration-150 ease-in-out bg-blue-600 border border-transparent rounded-md shadow-sm hover:bg-blue-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 disabled:opacity-25">Editar</a>
                                         <form
                                             @submit.prevent="() => {
                                                 if (confirm('Tem certeza que deseja excluir este agendamento?')) {
