@@ -17,9 +17,9 @@ class ScheduleTimeController extends Controller
         ]);
     }
 
-    public function destroy(ScheduleTime $schedule): RedirectResponse
+    public function destroy(ScheduleTime $scheduledTime): RedirectResponse
     {
-        $schedule->delete();
+        $scheduledTime->delete();
 
         return back()->with('success', 'Agendamento excluido com sucesso!');
     }
