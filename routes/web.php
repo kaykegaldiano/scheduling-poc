@@ -4,7 +4,7 @@ use App\Http\Controllers\DashboardController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HolidayController;
 use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\ScheduleController;
+use App\Http\Controllers\ScheduleTimeController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -15,7 +15,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::post('/dashboard', [DashboardController::class, 'store'])->name('dashboard.store');
 });
 
-Route::resource('schedules', ScheduleController::class)->only(['index', 'destroy']);
+Route::resource('schedules', ScheduleTimeController::class)->only(['index', 'destroy']);
 Route::resource('/holidays', HolidayController::class)->except('show');
 
 Route::middleware('auth')->group(function () {

@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\ScheduleTime;
 use Illuminate\Http\RedirectResponse;
 
-class ScheduleController extends Controller
+class ScheduleTimeController extends Controller
 {
     public function index()
     {
