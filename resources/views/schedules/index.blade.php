@@ -44,7 +44,7 @@
                                                 }
                                             }"
                                                 class="mb-0"
-                                                action="{{ route('schedules.destroy', $schedule->id) }}" method="POST"
+                                                action="{{ route('scheduled-times.destroy', $schedule->id) }}" method="POST"
                                             >
                                                 @csrf
                                                 @method('DELETE')

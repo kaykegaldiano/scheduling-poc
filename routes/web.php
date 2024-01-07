@@ -15,7 +15,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::post('/dashboard', [DashboardController::class, 'store'])->name('dashboard.store');
 });
 
-Route::resource('schedules', ScheduleTimeController::class)->only(['index', 'destroy']);
+Route::resource('/scheduled-times', ScheduleTimeController::class)->only(['index', 'destroy']);
 Route::resource('/holidays', HolidayController::class)->except('show');
 
 Route::middleware('auth')->group(function () {

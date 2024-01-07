@@ -16,7 +16,7 @@
                         {{ __('Agendamento') }}
                     </x-nav-link>
 
-                    <x-nav-link :href="route('schedules.index')" :active="request()->routeIs('schedules.index')">
+                    <x-nav-link :href="route('scheduled-times.index')" :active="request()->routeIs('scheduled-times.index')">
                         {{ __('Agendamentos') }}
                     </x-nav-link>
 
@@ -83,7 +83,7 @@
                 {{ __('Agendamento') }}
             </x-responsive-nav-link>
 
-            <x-responsive-nav-link :href="route('schedules.index')" :active="request()->routeIs('schedules.index')">
+            <x-responsive-nav-link :href="route('scheduled-times.index')" :active="request()->routeIs('scheduled-times.index')">
                 {{ __('Agendamentos') }}
             </x-responsive-nav-link>
 
