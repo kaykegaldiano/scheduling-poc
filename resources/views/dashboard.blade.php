@@ -22,7 +22,7 @@
             <div class="overflow-hidden bg-white shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900">
 
-                    <form action="{{ route('dashboard') }}" method="POST" x-data="visible">
+                    <form action="{{ route('dashboard.store') }}" method="POST" x-data="visible">
                         @csrf
 
                         <div class="flex flex-col gap-1">
