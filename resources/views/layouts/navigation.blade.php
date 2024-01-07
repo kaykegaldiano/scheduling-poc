@@ -27,6 +27,10 @@
                     <x-nav-link :href="route('holidays.create')" :active="request()->routeIs('holidays.create')">
                         {{ __('Cadastrar feriado') }}
                     </x-nav-link>
+
+                    <x-nav-link :href="route('schedules.index')" :active="request()->routeIs('schedules.index')">
+                        {{ __('Horários') }}
+                    </x-nav-link>
                 </div>
             </div>
 
@@ -93,6 +97,10 @@
 
             <x-responsive-nav-link :href="route('holidays.create')" :active="request()->routeIs('holidays.create')">
                 {{ __('Cadastrar feriado') }}
+            </x-responsive-nav-link>
+
+            <x-responsive-nav-link :href="route('schedules.index')" :active="request()->routeIs('schedules.index')">
+                {{ __('Horários') }}
             </x-responsive-nav-link>
         </div>
 
