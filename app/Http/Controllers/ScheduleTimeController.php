@@ -9,7 +9,7 @@ class ScheduleTimeController extends Controller
 {
     public function index()
     {
-        return view('schedules.index', [
+        return view('scheduled_times.index', [
             'schedules' => ScheduleTime::with('user')
                 ->oldest('schedule_date')
                 ->get()
