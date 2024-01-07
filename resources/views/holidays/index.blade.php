@@ -1,4 +1,4 @@
-@use('Illuminate\Support\Carbon');
+@use('Illuminate\Support\Carbon')
 
 <x-app-layout>
 
