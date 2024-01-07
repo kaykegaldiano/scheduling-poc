@@ -39,9 +39,6 @@
                             <x-input-label for="schedule_time" value="Selecione o horário" />
                             <select class="border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500" name="schedule_hour" id="schedule_hour">
                                 <option value="" selected>-</option>
-                                @foreach ($schedules as $schedule)
-                                    <option value="{{ $schedule->time }}">{{ $schedule->time }}</option>
-                                @endforeach
                             </select>
                             <x-input-error :messages="$errors->get('schedule_hour')" />
                         </div>
@@ -71,8 +68,43 @@
                     minDate: 'today',
                 });
             })
+
+            document.querySelector('#schedule_date').addEventListener('change', async evt => {
+                if (evt.target.value !== '') {
+                    const schedulesArray = []
+                    const schedules = await fetch('/api/schedules')
+                    const schedulesData = await schedules.json()
+
+                    const scheduleTimes = await fetch('/api/schedule-times')
+                    const scheduleTimesData = await scheduleTimes.json()
+
+                    schedulesData.forEach(schedule => {
+                        scheduleTimesData.forEach(scheduleTimeData => {
+                            if (scheduleTimeData.schedule_date === evt.target.value && scheduleTimeData.schedule_hour === schedule.time) {
+                                schedulesArray.push(schedule.time)
+                            }
+                        })
+                    })
+
+                    const sel = document.querySelector('#schedule_hour')
+
+                    while (sel.options.length > 1) {
+                        sel.remove(1)
+                    }
+
+                    schedulesData.forEach(schedule => {
+                        if (schedulesArray.includes(schedule.time)) {
+                            return
+                        }
+
+                        const opt = document.createElement('option')
+                        opt.value = schedule.time
+                        opt.text = schedule.time
+                        sel.add(opt, null)
+                    })
+                }
+            })
         </script>
     @endpush
 
 </x-app-layout>
-
