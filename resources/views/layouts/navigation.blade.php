@@ -16,6 +16,10 @@
                         {{ __('Agendamento') }}
                     </x-nav-link>
 
+                    <x-nav-link :href="route('schedules.index')" :active="request()->routeIs('schedules.index')">
+                        {{ __('Agendamentos') }}
+                    </x-nav-link>
+
                     <x-nav-link :href="route('holidays.index')" :active="request()->routeIs('holidays.index')">
                         {{ __('Feriados') }}
                     </x-nav-link>
@@ -77,6 +81,10 @@
         <div class="pt-2 pb-3 space-y-1">
             <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                 {{ __('Agendamento') }}
+            </x-responsive-nav-link>
+
+            <x-responsive-nav-link :href="route('schedules.index')" :active="request()->routeIs('schedules.index')">
+                {{ __('Agendamentos') }}
             </x-responsive-nav-link>
 
             <x-responsive-nav-link :href="route('holidays.index')" :active="request()->routeIs('holidays.index')">

@@ -1,14 +1,15 @@
 <?php
 
-use App\Http\Controllers\HolidayController;
-use App\Http\Controllers\ProfileController;
 use App\Models\Holiday;
 use App\Models\Schedule;
 use App\Models\ScheduleTime;
-use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\HolidayController;
+use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\ScheduleController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -21,6 +22,8 @@ Route::get('/dashboard', function () {
         'scheduleTimes' => ScheduleTime::all()
     ]);
 })->middleware(['auth', 'verified'])->name('dashboard');
+
+Route::resource('schedules', ScheduleController::class)->except('show');
 
 Route::post('/dashboard', function (Request $request): RedirectResponse {
     $request->validate([
