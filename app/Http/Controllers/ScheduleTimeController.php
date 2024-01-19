@@ -13,6 +13,7 @@ class ScheduleTimeController extends Controller
         return view('scheduled_times.index', [
             'schedules' => ScheduleTime::with('user')
                 ->oldest('schedule_date')
+                ->orderBy('schedule_hour', 'asc')
                 ->get()
         ]);
     }
