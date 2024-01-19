@@ -36,14 +36,14 @@
                         </div>
 
                         <div class="flex flex-col gap-1 pt-4" x-show="visible" x-transition>
-                            <x-input-label for="schedule_time" value="Selecione o horário" />
-                            <select x-ref="schedule_hour" class="border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500" name="schedule_hour" id="schedule_hour">
-                                <option value="" selected>-</option>
+                            <x-input-label for="schedule_time" value="Selecione um horário" />
+                            <select @change="$el.value !== '' ? btn_disabled = false : btn_disabled = true" x-ref="schedule_hour" class="border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500" name="schedule_hour" id="schedule_hour">
+                                <option value="" selected>Selecione um horário</option>
                             </select>
                             <x-input-error :messages="$errors->get('schedule_hour')" />
                         </div>
 
-                        <x-primary-button class="mt-4">Agendar</x-primary-button>
+                        <x-primary-button x-data="btn_disabled" class="mt-4" x-bind:disabled="btn_disabled">Agendar</x-primary-button>
 
                     </form>
 
@@ -72,6 +72,7 @@
             document.addEventListener('alpine:init', () => {
                 Alpine.data('visible', () => ({
                     visible: false,
+                    btn_disabled: true,
 
                     async showSchedules() {
                         this.$el.value !== '' ? this.visible = true : this.visible = false
@@ -94,6 +95,17 @@
 
                         while (sel.options.length > 1) {
                             sel.remove(1)
+                        }
+
+                        sel.options[0].value = ''
+                        sel.options[0].text = 'Selecione um horário'
+                        sel.disabled = false
+
+                        if (schedulesArray.length === {{ $schedules->count() }}) {
+                            sel.options[0].value = ''
+                            sel.options[0].text = 'Nenhum horário disponível nessa data.'
+                            sel.disabled = true
+                            return
                         }
 
                         schedulesData.forEach(schedule => {
